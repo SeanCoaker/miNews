@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_blue"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        android:text="The Guardian: European roundup: Lewandowski hits hat-trick as Bayern thrash Eintracht"
+        android:textColor="@color/white"
+        android:textSize="28sp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/lewa" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="7dp"
+        android:paddingLeft="7dp"
+        android:text="Robert Lewandowski bagged a hat-trick as Bayern Munich thumped Eintracht Frankfurt 5-0. In a typically ruthless Bayern..."
+        android:textColor="@color/black" />
+
+</LinearLayout>
