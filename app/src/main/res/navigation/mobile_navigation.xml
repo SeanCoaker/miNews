@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.coaker.newsaggregatorapp.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:id="@+id/nav_saved"
+        android:name="com.coaker.newsaggregatorapp.ui.saved.SavedFragment"
+        android:label="@string/menu_saved"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.coaker.newsaggregatorapp.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:id="@+id/nav_crosswords"
+        android:name="com.coaker.newsaggregatorapp.ui.crosswords.CrosswordsFragment"
+        android:label="@string/menu_crossword"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>

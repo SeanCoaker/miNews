@@ -1,4 +1,4 @@
-package com.coaker.newsaggregatorapp.ui.slideshow
+package com.coaker.newsaggregatorapp.ui.crosswords
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.coaker.newsaggregatorapp.R
 
-class SlideshowFragment : Fragment() {
+class CrosswordsFragment : Fragment() {
 
-    private lateinit var slideshowViewModel: SlideshowViewModel
+    private lateinit var crosswordsViewModel: CrosswordsViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        slideshowViewModel =
-                ViewModelProvider(this).get(SlideshowViewModel::class.java)
+        crosswordsViewModel =
+                ViewModelProvider(this).get(CrosswordsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_slideshow, container, false)
         val textView: TextView = root.findViewById(R.id.text_slideshow)
-        slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
+        crosswordsViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root

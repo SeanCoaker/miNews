@@ -1,13 +1,13 @@
-package com.coaker.newsaggregatorapp.ui.gallery
+package com.coaker.newsaggregatorapp.ui.crosswords
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class GalleryViewModel : ViewModel() {
+class CrosswordsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is gallery Fragment"
+        value = "This is a crosswords Fragment"
     }
     val text: LiveData<String> = _text
 }
