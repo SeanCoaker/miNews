@@ -28,8 +28,8 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="7dp"
-        android:paddingLeft="7dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
         android:text="Lewis Hamilton claimed a record 92nd Formula One victory at the Portuguese Grand Prix, moving him clear of Michael..."
         android:textColor="@color/black" />
 

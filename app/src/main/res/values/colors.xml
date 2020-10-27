@@ -19,4 +19,6 @@
     <color name="rainbowblue">#0000FF</color>
     <color name="rainbowindigo">#2E2B5F</color>
     <color name="rainbowviolet">#8B00FF</color>
+
+    <color name="googlegrey">#D2D2D2</color>
 </resources>

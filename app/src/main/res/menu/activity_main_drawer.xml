@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    tools:showIn="navigation_view" >
+
+
 
     <group android:checkableBehavior="single">
         <item
@@ -13,8 +15,17 @@
             android:icon="@drawable/baseline_save_black_18dp"
             android:title="@string/menu_saved" />
         <item
+            android:id="@+id/nav_key_terms"
+            android:icon="@drawable/baseline_edit_black_18dp"
+            android:title="@string/menu_key_terms" />
+        <item
             android:id="@+id/nav_crosswords"
             android:icon="@drawable/baseline_videogame_asset_black_18dp"
             android:title="@string/menu_crossword" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/baseline_person_black_18dp"
+            android:title="@string/menu_logout" />
     </group>
 </menu>

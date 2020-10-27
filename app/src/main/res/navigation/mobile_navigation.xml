@@ -22,4 +22,11 @@
         android:name="com.coaker.newsaggregatorapp.ui.crosswords.CrosswordsFragment"
         android:label="@string/menu_crossword"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_article"
+        android:name="com.coaker.newsaggregatorapp.ui.article.ArticleFragment"
+        android:label="@string/article"
+        tools:layout="@layout/fragment_article" />
+
 </navigation>

@@ -7,87 +7,59 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="30dp">
 
-        <HorizontalScrollView
+        <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbarAlwaysDrawHorizontalTrack="true"
-            android:scrollbarSize="0dp">
+            app:tabBackground="@color/googlegrey"
+            app:tabMode="scrollable" >
 
-            <LinearLayout
+            <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="5dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:text="Sport" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonSport"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="0.5dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/rainbowred"
-                    android:text="Sport" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Politics" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonPolitics"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="0.5dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/rainboworange"
-                    android:text="Politics" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Covid" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonFood"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="0.5dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/rainbowyellow"
-                    android:text="Food" />
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Europe" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonUK"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="0.5dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/rainbowgreen"
-                    android:text="UK" />
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabItem2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tottenham" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonCovid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="0.5dp"
-                    android:layout_weight="1"
-                    android:text="Covid"
-                    app:backgroundTint="@color/rainbowblue" />
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabItem3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tennis" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonTottenham"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="0.5dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/rainbowindigo"
-                    android:text="Tottenham" />
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabItem4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gaming" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonGaming"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="0.5dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/rainbowviolet"
-                    android:text="Gaming" />
-
-            </LinearLayout>
-        </HorizontalScrollView>
+        </com.google.android.material.tabs.TabLayout>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -123,6 +95,7 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="@dimen/card_margin"
             android:layout_marginTop="@dimen/card_margin"
+            android:layout_marginBottom="@dimen/card_margin"
             app:cardCornerRadius="@dimen/card_corner_radius">
 
             <include

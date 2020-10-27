@@ -10,5 +10,9 @@
     <string name="menu_home">Home</string>
     <string name="menu_saved">Saved</string>
     <string name="menu_crossword">Crosswords</string>
+    <string name="menu_key_terms">Key Terms</string>
+    <string name="menu_logout">Log Out</string>
+    <string name="article">Article</string>
+
     <string name="BBC">BBC</string>
 </resources>
