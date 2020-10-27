@@ -15,4 +15,12 @@
     <string name="article">Article</string>
 
     <string name="BBC">BBC</string>
+
+    <string name="sport_text">Sport</string>
+    <string name="politics_text">Politics</string>
+    <string name="covid_text">Covid</string>
+    <string name="europe_text">Europe</string>
+    <string name="tottenham_text">Tottenham</string>
+    <string name="tennis_text">Tennis</string>
+    <string name="gaming_text">Gaming</string>
 </resources>
