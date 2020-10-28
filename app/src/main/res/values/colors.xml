@@ -6,19 +6,17 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+
+    <color name="white_200">#FFFFFFFF</color>
+    <color name="white_500">#FAFAFA</color>
+    <color name="white_700">#C7C7C7</color>
+
+    <color name="secondary_blue">#1976D2</color>
     
     <color name="bbcred">#B90005</color>
     <color name="espnred">#CC0000</color>
     <color name="guardianblue">#104</color>
-
-    <color name="rainbowred">#EE0000</color>
-    <color name="rainboworange">#FF7E00</color>
-    <color name="rainbowyellow">#FFBB00</color>
-    <color name="rainbowgreen">#00CC00</color>
-    <color name="rainbowblue">#0000FF</color>
-    <color name="rainbowindigo">#2E2B5F</color>
-    <color name="rainbowviolet">#8B00FF</color>
 
     <color name="googlegrey">#D2D2D2</color>
 </resources>

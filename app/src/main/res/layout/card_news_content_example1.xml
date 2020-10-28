@@ -6,31 +6,31 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/articleHeadline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_red"
         android:paddingHorizontal="10dp"
         android:paddingVertical="5dp"
-        android:text="BBC: Gareth Bale: Tottenham re-sign Real Madrid forward on loan"
-        android:textColor="@color/white"
+        android:text="@string/bale_headline"
+        android:textColor="@color/white_200"
         android:textSize="28sp" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/articleImage1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/bale_image_description"
         app:srcCompat="@drawable/bale" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/articlePreview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="10dp"
         android:paddingVertical="5dp"
-        android:text="Tottenham have re-signed Wales forward Gareth Bale from Spanish champions Real Madrid on a season-long loan...."
-        android:textColor="@color/black" />
+        android:text="@string/bale_preview"
+        android:textColor="?android:attr/textColorPrimary" />
 
 </LinearLayout>

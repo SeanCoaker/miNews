@@ -23,4 +23,27 @@
     <string name="tottenham_text">Tottenham</string>
     <string name="tennis_text">Tennis</string>
     <string name="gaming_text">Gaming</string>
+
+    <string name="bale_full_article_example">Tottenham have re-signed Wales forward Gareth Bale from Spanish champions Real Madrid on a season-long loan.
+        \n\nBale, 31, left Spurs for a then world record £85m in 2013 and went on to score more than 100 goals and win four Champions Leagues with Real.
+        \n\n"It\'s nice to be back. It\'s such a special club to me. It\'s where I made my name," said Bale.
+        \n\n"Hopefully, now I can get some match fitness, get under way and really help the team and, hopefully, win trophies."
+        \n\nSpurs said Bale has signed for them with a knee injury sustained playing for Wales earlier this month and they "anticipate that he will be match fit after October\'s international break".
+        \n\nThat would mean the forward missing their next five games, with the club\'s first outing following the international break at home to West Ham on 17 October. </string>
+
+    <string name="bale_headline">BBC: Gareth Bale: Tottenham re-sign Real Madrid forward on loan</string>
+    <string name="bale_preview">Tottenham have re-signed Wales forward Gareth Bale from Spanish champions Real Madrid on a season-long loan....</string>
+    <string name="bale_image_description">Bale at Hotspur Way</string>
+
+    <string name="lewa_headline">The Guardian: European roundup: Lewandowski hits hat-trick as Bayern thrash Eintracht</string>
+    <string name="lewa_preview">Robert Lewandowski bagged a hat-trick as Bayern Munich thumped Eintracht Frankfurt 5-0. In a typically ruthless Bayern...</string>
+    <string name="lewa_image_description">Lewandowski celebrates hat-trick</string>
+
+    <string name="hamilton_headline">ESPN: Hamilton moves past Schumacher with 92nd win</string>
+    <string name="hamilton_preview">Lewis Hamilton claimed a record 92nd Formula One victory at the Portuguese Grand Prix, moving him clear of Michael...</string>
+    <string name="hamilton_image_description">Hamilton celebrates win at Portimao</string>
+
+    <string name="toolbar_save">Save Article</string>
+    <string name="toolbar_audio">Article Text to Speech</string>
+    <string name="toolbar_share">Share Article</string>
 </resources>

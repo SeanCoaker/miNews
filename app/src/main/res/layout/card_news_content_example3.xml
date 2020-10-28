@@ -6,31 +6,31 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/articleHeadline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_blue"
         android:paddingHorizontal="10dp"
         android:paddingVertical="5dp"
-        android:text="The Guardian: European roundup: Lewandowski hits hat-trick as Bayern thrash Eintracht"
-        android:textColor="@color/white"
+        android:text="@string/lewa_headline"
+        android:textColor="@color/white_200"
         android:textSize="28sp" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/articleImage1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/lewa_image_description"
         app:srcCompat="@drawable/lewa" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/articlePreview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="10dp"
         android:paddingVertical="5dp"
-        android:text="Robert Lewandowski bagged a hat-trick as Bayern Munich thumped Eintracht Frankfurt 5-0. In a typically ruthless Bayern..."
-        android:textColor="@color/black" />
+        android:text="@string/lewa_preview"
+        android:textColor="?android:attr/textColorPrimary" />
 
 </LinearLayout>

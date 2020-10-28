@@ -9,18 +9,18 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textViewHeadline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle_red"
             android:paddingHorizontal="10dp"
             android:paddingVertical="5dp"
-            android:text="BBC: Gareth Bale: Tottenham re-sign Real Madrid forward on loan"
-            android:textColor="@color/white"
+            android:text="@string/bale_headline"
+            android:textColor="@color/white_200"
             android:textSize="28sp" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/articleImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -28,22 +28,12 @@
             app:srcCompat="@drawable/bale" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textViewArticle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="10dp"
             android:paddingVertical="5dp"
-            android:text="Tottenham have re-signed Wales forward Gareth Bale from Spanish champions Real Madrid on a season-long loan.
-
-\n\nBale, 31, left Spurs for a then world record £85m in 2013 and went on to score more than 100 goals and win four Champions Leagues with Real.
-
-\n\n'It's nice to be back. It's such a special club to me. It's where I made my name,' said Bale.
-
-\n\n'Hopefully, now I can get some match fitness, get under way and really help the team and, hopefully, win trophies.'
-
-\n\nSpurs said Bale has signed for them with a knee injury sustained playing for Wales earlier this month and they 'anticipate that he will be match fit after October's international break'.
-
-\n\nThat would mean the forward missing their next five games, with the club's first outing following the international break at home to West Ham on 17 October."
-            android:textColor="@color/black" />
+            android:text="@string/bale_full_article_example"
+            android:textColor="?android:attr/textColorPrimary" />
     </LinearLayout>
 </ScrollView>

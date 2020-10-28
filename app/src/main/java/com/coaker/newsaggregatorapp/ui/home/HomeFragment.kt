@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
         val articleButton = root.findViewById<CardView>(R.id.cardView1)
 
         articleButton.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.nav_article)
+            view?.findNavController()?.navigate(R.id.nav_article_webview)
         }
         return root
     }

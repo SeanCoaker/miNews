@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--    <item-->
+<!--        android:id="@+id/action_settings"-->
+<!--        android:orderInCategory="100"-->
+<!--        android:title="@string/action_settings"-->
+<!--        app:showAsAction="never" />-->
+
+    <item
+        android:id="@+id/action_save"
+        android:orderInCategory="1"
+        android:title="@string/toolbar_save"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_audio"
+        android:icon="@drawable/ic_baseline_volume_up_24"
+        android:menuCategory="secondary"
+        android:title="@string/toolbar_audio"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_share"
+        android:orderInCategory="2"
+        android:title="@string/toolbar_share"
+        app:showAsAction="never" />
+</menu>

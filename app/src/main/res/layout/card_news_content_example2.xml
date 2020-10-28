@@ -6,31 +6,31 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/articleHeadline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_black"
         android:paddingHorizontal="10dp"
         android:paddingVertical="5dp"
-        android:text="ESPN: Hamilton moves past Schumacher with 92nd win"
+        android:text="@string/hamilton_headline"
         android:textColor="@color/espnred"
         android:textSize="28sp" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/articleImage1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/hamilton_image_description"
         app:srcCompat="@drawable/hamilton" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/articlePreview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="10dp"
         android:paddingVertical="5dp"
-        android:text="Lewis Hamilton claimed a record 92nd Formula One victory at the Portuguese Grand Prix, moving him clear of Michael..."
-        android:textColor="@color/black" />
+        android:text="@string/hamilton_preview"
+        android:textColor="?android:attr/textColorPrimary" />
 
 </LinearLayout>

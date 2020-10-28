@@ -24,9 +24,9 @@
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
-        android:id="@+id/nav_article"
+        android:id="@+id/nav_article_webview"
         android:name="com.coaker.newsaggregatorapp.ui.article.ArticleFragment"
         android:label="@string/article"
-        tools:layout="@layout/fragment_article" />
+        tools:layout="@layout/fragment_article_webview" />
 
 </navigation>

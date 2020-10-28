@@ -3,29 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view" >
 
-
-
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/baseline_library_books_black_18dp"
+            android:icon="@drawable/ic_baseline_library_books_24"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_saved"
-            android:icon="@drawable/baseline_save_black_18dp"
+            android:icon="@drawable/ic_baseline_save_24"
             android:title="@string/menu_saved" />
         <item
             android:id="@+id/nav_key_terms"
-            android:icon="@drawable/baseline_edit_black_18dp"
+            android:icon="@drawable/ic_baseline_edit_24"
             android:title="@string/menu_key_terms" />
         <item
             android:id="@+id/nav_crosswords"
-            android:icon="@drawable/baseline_videogame_asset_black_18dp"
+            android:icon="@drawable/ic_baseline_videogame_asset_24"
             android:title="@string/menu_crossword" />
 
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/baseline_person_black_18dp"
+            android:icon="@drawable/ic_baseline_person_24"
             android:title="@string/menu_logout" />
     </group>
 </menu>
