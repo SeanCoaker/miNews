@@ -2,6 +2,7 @@ package com.coaker.newsaggregatorapp.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
@@ -28,7 +29,7 @@ class HomeFragment : Fragment() {
         val articleButton = root.findViewById<CardView>(R.id.cardView1)
 
         articleButton.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.nav_article_webview)
+            it.findNavController().navigate(R.id.nav_article_webview)
         }
         return root
     }

@@ -15,7 +15,7 @@
         android:id="@+id/nav_saved"
         android:name="com.coaker.newsaggregatorapp.ui.saved.SavedFragment"
         android:label="@string/menu_saved"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_article" />
 
     <fragment
         android:id="@+id/nav_crosswords"

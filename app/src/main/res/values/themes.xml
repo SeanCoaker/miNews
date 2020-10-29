@@ -5,7 +5,7 @@
 
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/white_200</item>
-        <item name="colorPrimaryVariant">@color/secondary_blue</item>
+        <item name="colorPrimaryVariant">@color/secondary_blue_500</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -13,6 +13,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/white_700</item>
+        <item name="android:windowLightStatusBar">true</item>
 
         <!-- Customize your theme here. -->
     </style>
@@ -36,7 +37,10 @@
         <item name="android:fontFamily">@font/product_sans</item>
     </style>
 
-    <style name="CustomHighlight.NavigationDrawer" parent="Theme.MaterialComponents.Light">
-        <item name="colorControlActivated">@color/secondary_blue</item>
+    <style name="CustomNav" parent="Widget.Design.NavigationView">
+        <item name="itemBackground">@drawable/drawer_background</item>
+        <item name="itemIconTint">@color/drawer_icon_selected</item>
+        <item name="itemTextColor">@color/drawer_icon_selected</item>
     </style>
+
 </resources>

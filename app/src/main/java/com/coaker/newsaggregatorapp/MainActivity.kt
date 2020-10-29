@@ -1,7 +1,10 @@
 package com.coaker.newsaggregatorapp
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -11,9 +14,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
-import com.coaker.newsaggregatorapp.ui.home.HomeFragment
+import com.coaker.newsaggregatorapp.ui.saved.SavedFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,6 +40,17 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+//        val id = item.itemId
+//        val view = findViewById<View>(android.R.id.content).rootView
+//
+//        when (id) {
+//            R.id.nav_saved -> view.findNavController().navigate(R.id.nav_saved)
+//        }
+//
+//        return false
+//    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
@@ -56,4 +69,6 @@ class MainActivity : AppCompatActivity() {
         transaction.addToBackStack(null)
         transaction.commit()
     }
+
+
 }

@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.NewsAggregatorApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/dark_mode_background</item>
+        <item name="colorPrimaryVariant">@color/secondary_blue_200</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -12,5 +12,31 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/dark_mode_background</item>
+
+        <item name="android:statusBarColor" tools:ignore="DuplicateDefinition">@color/dark_mode_background</item>
     </style>
+
+    <style name="Theme.NewsAggregatorApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
+        <item name="android:background">@color/dark_mode_accent</item>
+    </style>
+
+    <style name="Theme.NewsAggregatorApp.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight" />
+
+    <style name="AppTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/CustomText</item>
+        <item name="tabIndicatorColor">?attr/colorPrimaryVariant</item>
+        <item name="tabSelectedTextColor">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="CustomText" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/product_sans</item>
+    </style>
+
+    <style name="CustomNav" parent="Widget.Design.NavigationView">
+        <item name="itemBackground">@drawable/drawer_background</item>
+        <item name="itemIconTint">@color/drawer_icon_selected_night</item>
+        <item name="itemTextColor">@color/drawer_icon_selected_night</item>
+    </style>
+
 </resources>
