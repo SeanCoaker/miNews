@@ -16,6 +16,7 @@
     <color name="secondary_blue_500">#1E88E5</color>
     <color name="secondary_blue_transparent">#4D1976D2</color>
 
+    <color name="dark_mode">#1A1A1A</color>
     <color name="dark_mode_background">#303030</color>
     <color name="dark_mode_accent">#424242</color>
     

@@ -6,11 +6,13 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.coaker.newsaggregatorapp.MainActivity
 import com.coaker.newsaggregatorapp.R
 
-
 class ArticleFragment : Fragment() {
+    private val args: ArticleFragmentArgs by navArgs()
+    private lateinit var url: String
 
     private lateinit var articleViewModel: ArticleViewModel
 
@@ -23,6 +25,8 @@ class ArticleFragment : Fragment() {
                 ViewModelProvider(this).get(ArticleViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_article_webview, container, false)
 
+        url = args.url
+
         val webView = root.findViewById<WebView>(R.id.WebView)
 
         webView.webViewClient = object : WebViewClient() {
@@ -32,7 +36,7 @@ class ArticleFragment : Fragment() {
             }
         }
 
-        webView.loadUrl("https://www.bbc.co.uk/sport/football/54180724")
+        webView.loadUrl(url)
 
         setHasOptionsMenu(true)
 

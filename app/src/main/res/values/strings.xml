@@ -36,14 +36,15 @@
     <string name="bale_image_description">Bale at Hotspur Way</string>
 
     <string name="lewa_headline">The Guardian: European roundup: Lewandowski hits hat-trick as Bayern thrash Eintracht</string>
-    <string name="lewa_preview">Robert Lewandowski bagged a hat-trick as Bayern Munich thumped Eintracht Frankfurt 5-0. In a typically ruthless Bayern...</string>
+    <string name="lewa_preview">Robert Lewandowski bagged a hat–trick as Bayern Munich thumped Eintracht Frankfurt 5–0. In a typically ruthless Bayern…</string>
     <string name="lewa_image_description">Lewandowski celebrates hat-trick</string>
 
     <string name="hamilton_headline">ESPN: Hamilton moves past Schumacher with 92nd win</string>
-    <string name="hamilton_preview">Lewis Hamilton claimed a record 92nd Formula One victory at the Portuguese Grand Prix, moving him clear of Michael...</string>
+    <string name="hamilton_preview">Lewis Hamilton claimed a record 92nd Formula One victory at the Portuguese Grand Prix, moving him clear of Michael…</string>
     <string name="hamilton_image_description">Hamilton celebrates win at Portimao</string>
 
     <string name="toolbar_save">Save Article</string>
     <string name="toolbar_audio">Article Text to Speech</string>
     <string name="toolbar_share">Share Article</string>
+    <string name="article_image">article_image</string>
 </resources>

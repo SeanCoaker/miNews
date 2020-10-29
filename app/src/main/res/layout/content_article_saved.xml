@@ -12,5 +12,5 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_article" />
+        tools:layout="@layout/fragment_article_saved" />
 </androidx.constraintlayout.widget.ConstraintLayout>

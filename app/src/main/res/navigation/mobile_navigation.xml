@@ -9,24 +9,39 @@
         android:id="@+id/nav_home"
         android:name="com.coaker.newsaggregatorapp.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home_recycler" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_article_webview"
+            app:destination="@id/nav_article_webview" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_saved"
+            app:destination="@id/nav_saved" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_crosswords"
+            app:destination="@id/nav_crosswords" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_saved"
         android:name="com.coaker.newsaggregatorapp.ui.saved.SavedFragment"
         android:label="@string/menu_saved"
-        tools:layout="@layout/fragment_article" />
+        tools:layout="@layout/fragment_article_saved" />
 
     <fragment
         android:id="@+id/nav_crosswords"
         android:name="com.coaker.newsaggregatorapp.ui.crosswords.CrosswordsFragment"
         android:label="@string/menu_crossword"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_crosswords" />
 
     <fragment
         android:id="@+id/nav_article_webview"
         android:name="com.coaker.newsaggregatorapp.ui.article.ArticleFragment"
         android:label="@string/article"
-        tools:layout="@layout/fragment_article_webview" />
+        tools:layout="@layout/fragment_article_webview" >
+        <argument
+            android:name="url"
+            app:argType="string"
+            android:defaultValue='"404"' />
+    </fragment>
 
 </navigation>

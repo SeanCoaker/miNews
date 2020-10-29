@@ -14,14 +14,20 @@
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/dark_mode_background</item>
 
-        <item name="android:statusBarColor" tools:ignore="DuplicateDefinition">@color/dark_mode_background</item>
+        <item name="android:statusBarColor" tools:ignore="DuplicateDefinition">@color/dark_mode</item>
     </style>
 
     <style name="Theme.NewsAggregatorApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
-        <item name="android:background">@color/dark_mode_accent</item>
+        <item name="android:backgroundTint">@color/dark_mode_background</item>
     </style>
 
-    <style name="Theme.NewsAggregatorApp.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight" />
+    <style name="Theme.NewsAggregatorApp.ToolBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
+        <item name="android:backgroundTint">@color/dark_mode_accent</item>
+    </style>
+
+    <style name="Theme.NewsAggregatorApp.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight">
+        <item name="android:backgroundTint">@color/dark_mode_accent</item>
+    </style>
 
     <style name="AppTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/CustomText</item>

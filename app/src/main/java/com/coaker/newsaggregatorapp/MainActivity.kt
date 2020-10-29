@@ -1,10 +1,11 @@
 package com.coaker.newsaggregatorapp
 
-import android.app.Activity
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.Menu
-import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,7 +16,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import com.coaker.newsaggregatorapp.ui.saved.SavedFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
     }
+
+
 
 //    override fun onNavigationItemSelected(item: MenuItem): Boolean {
 //        val id = item.itemId
