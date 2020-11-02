@@ -21,9 +21,9 @@
 
         <ImageView
             android:id="@+id/articleImage"
+            android:contentDescription="@string/article_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/bale" />
 

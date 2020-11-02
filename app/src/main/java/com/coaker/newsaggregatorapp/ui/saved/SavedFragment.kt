@@ -1,11 +1,10 @@
 package com.coaker.newsaggregatorapp.ui.saved
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.coaker.newsaggregatorapp.MainActivity
 import com.coaker.newsaggregatorapp.R
 
 class SavedFragment : Fragment() {
@@ -22,5 +21,11 @@ class SavedFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_article_saved, container, false)
 
         return root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        val context = activity as MainActivity
+        context.menuInflater.inflate(R.menu.article, menu)
     }
 }

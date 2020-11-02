@@ -19,9 +19,7 @@
             android:id="@+id/articleImage2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/bale_image_description"
-            app:srcCompat="@drawable/bale" />
+            android:adjustViewBounds="true" />
 
         <TextView
             android:id="@+id/articleHeadline2"
@@ -30,7 +28,6 @@
             android:paddingHorizontal="15dp"
             android:paddingTop="15dp"
             android:paddingBottom="5dp"
-            android:text="@string/bale_headline"
             android:textColor="?android:attr/textColorPrimary"
             android:textStyle="bold" />
 
@@ -40,7 +37,6 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="15dp"
             android:paddingVertical="5dp"
-            android:text="@string/bale_preview"
             android:textColor="?android:attr/textColorPrimary" />
 
         <TextView
