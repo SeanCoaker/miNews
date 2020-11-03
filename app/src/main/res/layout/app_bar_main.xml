@@ -22,6 +22,7 @@
             android:theme="@style/Theme.NewsAggregatorApp.ToolBarOverlay" />
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
             style="@style/AppTabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

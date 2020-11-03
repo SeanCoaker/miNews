@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.coaker.newsaggregatorapp.ui.home.HomeFragment
 import com.squareup.picasso.Picasso
 
-class ArticleAdapter(private val fragment: HomeFragment, private val dataList: ArrayList<NewsData>) : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
+class ArticleAdapter(private val mainActivity: MainActivity, private val dataList: ArrayList<NewsData>) : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
     private var root: Context? = null
 
     inner class ViewHolder(view: View) :  RecyclerView.ViewHolder(view), View.OnClickListener {
@@ -29,7 +29,7 @@ class ArticleAdapter(private val fragment: HomeFragment, private val dataList: A
 
         override fun onClick(v: View?) {
 
-            fragment.showArticle(adapterPosition)
+            mainActivity.showArticle(adapterPosition)
         }
     }
 
