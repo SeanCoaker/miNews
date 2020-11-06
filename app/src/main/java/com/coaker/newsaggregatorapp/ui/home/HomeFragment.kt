@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.coaker.newsaggregatorapp.R
 
 class HomeFragment : Fragment() {
@@ -22,6 +23,9 @@ class HomeFragment : Fragment() {
                 ViewModelProvider(this).get(HomeViewModel::class.java)
 
         root = inflater.inflate(R.layout.fragment_home_recycler, container, false)
+
+        val recyclerView = root.findViewById<RecyclerView>(R.id.RecyclerView)
+        recyclerView.visibility = View.GONE
 
         return root
     }

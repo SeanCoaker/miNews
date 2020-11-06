@@ -47,4 +47,19 @@
     <string name="toolbar_audio">Article Text to Speech</string>
     <string name="toolbar_share">Share Article</string>
     <string name="article_image">article_image</string>
+    <string name="sign_in_with_email">Sign in with Email</string>
+    <string name="sign_in_with_facebook">Sign in with Facebook</string>
+    <string name="sign_in_with_apple">Sign in with Apple</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+
+    <string name="facebook_app_id">417797376281039</string>
+    <string name="fb_login_protocol_scheme">fb417797376281039</string>
+    <string name="name_hint">Name</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login">Login</string>
+    <string name="register_here">Register Here</string>
+    <string name="create_account">Create Account</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+
 </resources>
