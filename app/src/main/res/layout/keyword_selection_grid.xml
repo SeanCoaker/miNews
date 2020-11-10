@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="3" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/imageButtonSport"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_baseline_sports_basketball_24"
+            android:background="@drawable/circle_button"/>
+
+        <TextView
+            android:id="@+id/textViewSport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:text="Sport" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
+
+        <ImageButton
+            android:id="@+id/imageButtonTechnology"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_baseline_laptop_24"
+            android:background="@drawable/circle_button"/>
+
+        <TextView
+            android:id="@+id/textViewTechnology"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:text="Technology" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <ImageButton
+            android:id="@+id/imageButtonPolitics"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_baseline_mic_24"
+            android:background="@drawable/circle_button"/>
+
+        <TextView
+            android:id="@+id/textViewPolitics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:text="Politics" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <ImageButton
+            android:id="@+id/imageButtonBusiness"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_baseline_attach_money_24"
+            android:background="@drawable/circle_button"/>
+
+        <TextView
+            android:id="@+id/textViewBusiness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:text="Business" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical" >
+        <ImageButton
+            android:id="@+id/imageButtonEntertainment"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_baseline_format_paint_24"
+            android:background="@drawable/circle_button"/>
+
+        <TextView
+            android:id="@+id/textViewEntertainment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:text="Entertainment" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <ImageButton
+            android:id="@+id/imageButtonMedicine"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_baseline_medical_services_24"
+            android:background="@drawable/circle_button"/>
+
+        <TextView
+            android:id="@+id/textViewMedicine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:text="Medicine" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <ImageButton
+            android:id="@+id/imageButtonFood"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:scaleType="fitCenter"
+            android:padding="15dp"
+            app:srcCompat="@drawable/ic_baseline_fastfood_24"
+            android:background="@drawable/circle_button"/>
+
+        <TextView
+            android:id="@+id/textViewFood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:text="Food" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical" >
+        <ImageButton
+            android:id="@+id/imageButtonGaming"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_baseline_games_24"
+            android:background="@drawable/circle_button"/>
+
+        <TextView
+            android:id="@+id/textViewGaming"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:text="Gaming" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <ImageButton
+            android:id="@+id/imageButtonMusic"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_baseline_music_note_24"
+            android:background="@drawable/circle_button"/>
+
+        <TextView
+            android:id="@+id/textViewMusic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:text="Music" />
+    </LinearLayout>
+</GridLayout>

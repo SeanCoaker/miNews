@@ -7,6 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/addTopicsTextView"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:fontFamily="@font/product_sans"
+        android:textColor="@color/black"
+        android:layout_marginBottom="70dp"
+        android:layout_marginEnd="50dp"
+        android:textAlignment="viewEnd"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="@string/add_topics_hint" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -29,48 +44,6 @@
             android:layout_gravity="top"
             app:tabMode="scrollable">
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabSport"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sport_text" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabPolitics"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/politics_text" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabCovid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/covid_text" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabEurope"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/europe_text" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabTottenham"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tottenham_text" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabTennis"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tennis_text" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabGaming"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/gaming_text" />
-
         </com.google.android.material.tabs.TabLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -86,5 +59,17 @@
         android:layout_height="wrap_content"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="center" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addTopicsFab"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabCustomSize="45dp"
+        android:clickable="true"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="10dp"
+        app:srcCompat="@drawable/ic_baseline_add_24"
+        android:contentDescription="@string/add_topics_fab" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

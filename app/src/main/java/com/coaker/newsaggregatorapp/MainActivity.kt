@@ -1,5 +1,6 @@
 package com.coaker.newsaggregatorapp
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -24,11 +25,13 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.login.LoginManager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
@@ -43,8 +46,10 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var progressBar: ProgressBar
+    private lateinit var tabLayout: TabLayout
 
     private var articleList = ArrayList<NewsData>()
+    private var keywordsList = ArrayList<String>()
 
     private var name: String? = null
     private var email: String? = null
@@ -52,6 +57,7 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
     private var isCustom: Boolean? = null
 
     private val client = OkHttpClient()
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,11 +68,23 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
 
         isCustom = intent.getBooleanExtra("custom", false)
 
-        FirebaseAuth.getInstance().currentUser!!.reload()
+        progressBar = findViewById(R.id.progressBar)
+        tabLayout = findViewById(R.id.tabLayout)
 
         val user = Firebase.auth.currentUser
+        user!!.reload()
 
-        name = user!!.displayName.toString()
+        val docRef = db.collection("users").document(user.uid)
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists()) {
+                keywordsList = documentSnapshot.get("keywords") as ArrayList<String>
+            }
+            setupTabLayout()
+        }.addOnFailureListener {
+            Log.i("Firestore Read: ", "Failed")
+        }
+
+        name = user.displayName.toString()
         email = user.email
         image = user.photoUrl
 
@@ -93,37 +111,22 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
         val logoutItem = navView.menu.findItem(R.id.nav_logout)
         logoutItem.setOnMenuItemClickListener(this)
 
-        val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
-
-        progressBar = findViewById(R.id.progressBar)
-        progressBar.visibility = View.VISIBLE
-
         if (savedInstanceState != null) {
             articleList = savedInstanceState.getParcelableArrayList("articleList")!!
             tabLayout.getTabAt(savedInstanceState.getInt("tab"))!!.select()
             restoreArticles()
         } else {
-            resetArticles(tabLayout.getTabAt(0)!!.text.toString(), "2020-11-02")
-        }
-
-
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                articleList.clear()
-                val keyword = tab.text.toString()
-                resetArticles(keyword, "2020-11-02")
+            if (tabLayout.getTabAt(0) != null) {
+                resetArticles(tabLayout.getTabAt(0)!!.text.toString(), "2020-11-02")
             }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {}
-            override fun onTabReselected(tab: TabLayout.Tab) {}
-        })
+        }
 
         val drawerImage = navView.getHeaderView(0).findViewById<ImageView>(R.id.drawerImage)
 
         if (FirebaseAuth.getInstance().currentUser!!.providerData[1].providerId == EmailAuthProvider.PROVIDER_ID) {
             drawerImage.setImageResource(R.drawable.ic_baseline_person_24)
         } else {
-            Picasso.with(this).load(image).resize(128, 128).into(drawerImage)
+            Picasso.get().load(image).resize(128, 128).into(drawerImage)
         }
 
         Log.i("Image: ", image.toString())
@@ -242,6 +245,57 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
             }
         }
         return false
+    }
+
+    private fun setupTabLayout() {
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                articleList.clear()
+                val keyword = tab.text.toString()
+                resetArticles(keyword, "2020-11-02")
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
+
+        keywordsList.forEach {
+            tabLayout.addTab(tabLayout.newTab().setText(it))
+        }
+
+        val addTopicsTextView = findViewById<TextView>(R.id.addTopicsTextView)
+        val fab = findViewById<FloatingActionButton>(R.id.addTopicsFab)
+
+        if (tabLayout.getTabAt(0) == null) {
+            tabLayout.visibility = View.GONE
+            progressBar.visibility = View.GONE
+            addTopicsTextView.visibility = View.VISIBLE
+            fab.visibility = View.VISIBLE
+
+            fab.setOnClickListener {
+                val intent = Intent(this, KeywordSelectionActivity::class.java)
+                startActivityForResult(intent, 7375)
+            }
+        } else {
+            tabLayout.visibility = View.VISIBLE
+            addTopicsTextView.visibility = View.GONE
+            fab.visibility = View.GONE
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 7375 && resultCode == Activity.RESULT_OK) {
+            if (data!!.hasExtra("keywordsList")) {
+                keywordsList = data.getStringArrayListExtra("keywordsList")!!
+                setupTabLayout()
+
+                val users = db.collection("users")
+
+                users.document(Firebase.auth.uid.toString()).set(mapOf("keywords" to keywordsList))
+            }
+        }
     }
 }
 

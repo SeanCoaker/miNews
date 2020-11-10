@@ -61,5 +61,9 @@
     <string name="register_here">Register Here</string>
     <string name="create_account">Create Account</string>
     <string name="confirm_password_hint">Confirm Password</string>
+    <string name="add_topics_hint">Choose topics to view \nnews stories about</string>
+    <string name="add_topics_fab">Add topics fab</string>
+    <string name="keywords_text_hint">Custom keywords separated by a comma</string>
+    <string name="submit_button">Submit</string>
 
 </resources>

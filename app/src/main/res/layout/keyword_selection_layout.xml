@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/keywordsTextLayout"
+        style="@style/LoginTextInputLayoutStyle"
+        android:layout_width="350dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginVertical="50dp"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/secondary_blue_500"
+        app:hintTextColor="@color/secondary_blue_500" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextKeywords"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/keywords_text_hint"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <include
+        layout="@layout/keyword_selection_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_marginVertical="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/submit_button"
+        android:backgroundTint="@color/purple_500"
+        android:textColor="@color/white_200"/>
+
+
+</LinearLayout>

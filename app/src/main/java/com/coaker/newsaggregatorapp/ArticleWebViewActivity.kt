@@ -84,7 +84,7 @@ class ArticleWebViewActivity : AppCompatActivity() {
             val strings = content!!.chunked(4000)
 
             strings.forEach {
-                tts!!.speak(it, TextToSpeech.QUEUE_ADD, null, "")
+                tts.speak(it, TextToSpeech.QUEUE_ADD, null, "")
             }
 
             true

@@ -60,6 +60,7 @@
 
         <activity android:name=".EmailLoginActivity" />
 
+        <activity android:name=".KeywordSelectionActivity" />
 
     </application>
 
