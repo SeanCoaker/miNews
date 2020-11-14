@@ -1,16 +1,21 @@
 package com.coaker.newsaggregatorapp
 
+import android.annotation.SuppressLint
 import android.net.http.SslError
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.Menu
+import android.view.View
 import android.webkit.SslErrorHandler
 import android.webkit.WebSettings
 import android.webkit.WebView
+import android.webkit.WebView.RENDERER_PRIORITY_BOUND
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.webkit.WebViewCompat
+import androidx.webkit.WebViewFeature
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -21,6 +26,7 @@ class ArticleWebViewActivity : AppCompatActivity() {
     private lateinit var url: String
     var content: String? = null
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_article_webview)
@@ -31,19 +37,29 @@ class ArticleWebViewActivity : AppCompatActivity() {
 
         val webView = findViewById<WebView>(R.id.WebView)
 
+        webView.apply {
+            settings.apply {
+                javaScriptEnabled = true
+
+                setSupportZoom(true)
+                builtInZoomControls = true
+                displayZoomControls = false
+            }
+        }
+
         webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                 view.loadUrl(url)
                 return true
             }
 
-            override fun onReceivedSslError(
-                view: WebView,
-                handler: SslErrorHandler,
-                error: SslError
-            ) {
-                handler.proceed()
-            }
+//            override fun onReceivedSslError(
+//                view: WebView,
+//                handler: SslErrorHandler,
+//                error: SslError
+//            ) {
+//                handler.proceed()
+//            }
         }
 
         webView.loadUrl(url)

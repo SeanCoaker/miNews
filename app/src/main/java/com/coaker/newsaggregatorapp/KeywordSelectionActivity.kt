@@ -7,7 +7,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import com.coaker.newsaggregatorapp.ui.keywords.Keyword
 import com.google.android.material.textfield.TextInputEditText
+import java.lang.NullPointerException
 
 class KeywordSelectionActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -21,7 +23,7 @@ class KeywordSelectionActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var buttonGaming: ImageButton
     private lateinit var buttonMusic: ImageButton
 
-    private var keywordsList = ArrayList<String>()
+    private var keywordsList = ArrayList<Keyword>()
     private var keywordButtons = ArrayList<ImageButton>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +59,16 @@ class KeywordSelectionActivity : AppCompatActivity(), View.OnClickListener {
         keywordButtons.add(buttonFood)
         keywordButtons.add(buttonGaming)
         keywordButtons.add(buttonMusic)
+
+        val intent = intent
+
+        try {
+            keywordsList = intent.getParcelableArrayListExtra("keywordsList")!!
+        } catch (e: NullPointerException) {
+
+        }
+
+        setupPreviousSelections()
 
         val buttonSubmit = findViewById<Button>(R.id.buttonSubmit)
         buttonSubmit.setOnClickListener(this)
@@ -161,63 +173,148 @@ class KeywordSelectionActivity : AppCompatActivity(), View.OnClickListener {
         val customText = findViewById<TextInputEditText>(R.id.editTextKeywords).text
         val customKeywords  = customText!!.split(",")
 
+        val keywordStrings = ArrayList<String>()
+        keywordsList.forEach { keyword ->
+            keywordStrings.add(keyword.word.toString())
+        }
+
         if (customKeywords.first() != "") {
             customKeywords.forEach {
-                keywordsList.add(it)
+                val keyword = Keyword()
+                keyword.isNotifier = true
+                keyword.word = it
+                keywordsList.add(keyword)
             }
         }
 
+        val newKeywordStrings = ArrayList<String>()
+
         keywordButtons.forEach {
+
             if (it.isSelected) {
+                val keyword = Keyword()
+                keyword.isNotifier = true
                 when (it) {
                     buttonSport -> {
-                        keywordsList.add("Sport")
+                        newKeywordStrings.add("Sport")
                     }
 
                     buttonTech -> {
-                        keywordsList.add("Technology")
+                        newKeywordStrings.add("Technology")
                     }
 
                     buttonPolitics -> {
-                        keywordsList.add("Politics")
+                        newKeywordStrings.add("Politics")
                     }
 
                     buttonBusiness -> {
-                        keywordsList.add("Business")
+                        newKeywordStrings.add("Business")
                     }
 
                     buttonEntertainment -> {
-                        keywordsList.add("Entertainment")
+                        newKeywordStrings.add("Entertainment")
                     }
 
                     buttonMed -> {
-                        keywordsList.add("Medicine")
+                        newKeywordStrings.add("Medicine")
                     }
 
                     buttonFood -> {
-                        keywordsList.add("Food")
+                        newKeywordStrings.add("Food")
                     }
 
                     buttonGaming -> {
-                        keywordsList.add("Gaming")
+                        newKeywordStrings.add("Gaming")
                     }
 
                     buttonMusic -> {
-                        keywordsList.add("Music")
+                        newKeywordStrings.add("Music")
+                    }
+                }
+            }
+        }
+        addKeywordToList(newKeywordStrings, keywordStrings)
+    }
+
+    private fun setupPreviousSelections() {
+        if (keywordsList.isNotEmpty()) {
+            keywordsList.forEach {
+                when (it.word) {
+                    "Sport" -> {
+                        buttonSport.isSelected = true
+                        setButtonSelected(buttonSport)
+                    }
+
+                    "Technology" -> {
+                        buttonTech.isSelected = true
+                        setButtonSelected(buttonTech)
+                    }
+
+                    "Politics" -> {
+                        buttonPolitics.isSelected = true
+                        setButtonSelected(buttonPolitics)
+                    }
+
+                    "Business" -> {
+                        buttonBusiness.isSelected = true
+                        setButtonSelected(buttonBusiness)
+                    }
+
+                    "Entertainment" -> {
+                        buttonEntertainment.isSelected = true
+                        setButtonSelected(buttonEntertainment)
+                    }
+
+                    "Medicine" -> {
+                        buttonMed.isSelected = true
+                        setButtonSelected(buttonMed)
+                    }
+
+                    "Food" -> {
+                        buttonFood.isSelected = true
+                        setButtonSelected(buttonFood)
+                    }
+
+                    "Gaming" -> {
+                        buttonGaming.isSelected = true
+                        setButtonSelected(buttonGaming)
+                    }
+
+                    "Music" -> {
+                        buttonMusic.isSelected = true
+                        setButtonSelected(buttonMusic)
                     }
                 }
             }
         }
     }
 
+    private fun setButtonSelected(button: ImageButton) {
+        button.setImageResource(R.drawable.ic_baseline_check_24)
+        button.setBackgroundResource(R.drawable.circle_button_purple)
+    }
+
+    private fun addKeywordToList(newKeywordStrings: ArrayList<String>, keywordStrings: ArrayList<String>) {
+        newKeywordStrings.forEach {
+            if (!keywordStrings.contains(it)) {
+                val newKeyword = Keyword()
+                newKeyword.word = it
+                newKeyword.isNotifier = true
+                keywordsList.add(newKeyword)
+            }
+        }
+
+    }
+
     override fun finish() {
         val data = Intent()
-        data.putStringArrayListExtra("keywordsList", keywordsList)
+        data.putParcelableArrayListExtra("keywordsList", keywordsList)
         setResult(Activity.RESULT_OK, data)
 
         super.finish()
     }
 }
+
 
 
 

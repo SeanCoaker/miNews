@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_crosswords"
             app:destination="@id/nav_crosswords" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_keywords"
+            app:destination="@id/nav_keywords" />
     </fragment>
 
     <fragment
@@ -42,6 +45,16 @@
             android:name="url"
             app:argType="string"
             android:defaultValue='"404"' />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_keywords"
+        android:name="com.coaker.newsaggregatorapp.ui.keywords.KeywordsFragment"
+        android:label="Keywords"
+        tools:layout="@layout/fragment_keyword_list" >
+        <argument
+            android:name="keywordsList"
+            app:argType="com.coaker.newsaggregatorapp.ui.keywords.Keyword" />
     </fragment>
 
 </navigation>

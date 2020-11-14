@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.coaker.newsaggregatorapp.MainActivity
 import com.coaker.newsaggregatorapp.R
+import com.google.android.material.tabs.TabLayout
 
 class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
@@ -26,6 +28,13 @@ class HomeFragment : Fragment() {
 
         val recyclerView = root.findViewById<RecyclerView>(R.id.RecyclerView)
         recyclerView.visibility = View.GONE
+
+        val parent = activity as MainActivity
+        parent.tabLayout.visibility = View.VISIBLE
+
+        parent.keywordsList.forEach {
+            println(it.word)
+        }
 
         return root
     }

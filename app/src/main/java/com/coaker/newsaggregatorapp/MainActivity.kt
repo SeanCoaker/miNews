@@ -1,5 +1,6 @@
 package com.coaker.newsaggregatorapp
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -24,6 +25,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.coaker.newsaggregatorapp.ui.keywords.Keyword
+import com.coaker.newsaggregatorapp.ui.keywords.UserDocument
 import com.facebook.login.LoginManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -40,16 +43,19 @@ import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var progressBar: ProgressBar
-    private lateinit var tabLayout: TabLayout
+    lateinit var tabLayout: TabLayout
 
     private var articleList = ArrayList<NewsData>()
-    private var keywordsList = ArrayList<String>()
+    var keywordsList = ArrayList<Keyword>()
 
     private var name: String? = null
     private var email: String? = null
@@ -59,6 +65,7 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
     private val client = OkHttpClient()
     private val db = FirebaseFirestore.getInstance()
 
+    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -77,7 +84,8 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
         val docRef = db.collection("users").document(user.uid)
         docRef.get().addOnSuccessListener { documentSnapshot ->
             if (documentSnapshot.exists()) {
-                keywordsList = documentSnapshot.get("keywords") as ArrayList<String>
+                val result = documentSnapshot.toObject(UserDocument::class.java)
+                keywordsList = result!!.keywords!!
             }
             setupTabLayout()
         }.addOnFailureListener {
@@ -102,7 +110,7 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
                 R.id.nav_home,
                 R.id.nav_saved,
                 R.id.nav_crosswords,
-                R.id.nav_key_terms
+                R.id.nav_keywords
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -117,7 +125,11 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
             restoreArticles()
         } else {
             if (tabLayout.getTabAt(0) != null) {
-                resetArticles(tabLayout.getTabAt(0)!!.text.toString(), "2020-11-02")
+                val sdf = SimpleDateFormat("yyyy-MM-dd")
+                val yesterday = Calendar.getInstance()
+                yesterday.add(Calendar.DATE, -1)
+                sdf.format(yesterday)
+                resetArticles(tabLayout.getTabAt(0)!!.text.toString(), sdf.format(yesterday.time))
             }
         }
 
@@ -128,9 +140,6 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
         } else {
             Picasso.get().load(image).resize(128, 128).into(drawerImage)
         }
-
-        Log.i("Image: ", image.toString())
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -149,7 +158,8 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
 
     private fun getArticles(keyword: String, date: String) {
         //val urlPersonal = "https://newsapi.org/v2/everything?q=$keyword&language=en&from=$date&sortBy=relevancy&apiKey=d4fd6b189c7d4ac4afa1f5ac86f9df5d"
-        val urlUni = "https://newsapi.org/v2/everything?q=$keyword&language=en&from=$date&sortBy=relevancy&apiKey=b5c1da042e234be5b00bd666e41b160d"
+        val urlUni =
+            "https://newsapi.org/v2/everything?q=$keyword&language=en&from=$date&sortBy=relevancy&apiKey=b5c1da042e234be5b00bd666e41b160d"
         val request = Request.Builder().url(urlUni).build()
 
         val response = client.newCall(request).execute().body()!!.string()
@@ -180,7 +190,8 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
     fun resetArticles(keyword: String, date: String) {
         lifecycleScope.launch {
             val operation = async(Dispatchers.IO) {
-                getArticles(keyword, "2020-11-02")
+                println(date)
+                getArticles(keyword, date)
             }
             operation.await()
 
@@ -247,12 +258,20 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
         return false
     }
 
-    private fun setupTabLayout() {
+    fun setupTabLayout() {
+
+        tabLayout.removeAllTabs()
+
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            @SuppressLint("SimpleDateFormat")
             override fun onTabSelected(tab: TabLayout.Tab) {
                 articleList.clear()
                 val keyword = tab.text.toString()
-                resetArticles(keyword, "2020-11-02")
+                val sdf = SimpleDateFormat("yyyy-MM-dd")
+                val yesterday = Calendar.getInstance()
+                yesterday.add(Calendar.DATE, -1)
+
+                resetArticles(keyword, sdf.format(yesterday.time).toString())
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {}
@@ -260,7 +279,7 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
         })
 
         keywordsList.forEach {
-            tabLayout.addTab(tabLayout.newTab().setText(it))
+            tabLayout.addTab(tabLayout.newTab().setText(it.word))
         }
 
         val addTopicsTextView = findViewById<TextView>(R.id.addTopicsTextView)
@@ -273,14 +292,14 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
             fab.visibility = View.VISIBLE
 
             fab.setOnClickListener {
-                val intent = Intent(this, KeywordSelectionActivity::class.java)
-                startActivityForResult(intent, 7375)
+                startKeywordSelection(7375)
             }
         } else {
             tabLayout.visibility = View.VISIBLE
             addTopicsTextView.visibility = View.GONE
             fab.visibility = View.GONE
         }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -288,14 +307,32 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
 
         if (requestCode == 7375 && resultCode == Activity.RESULT_OK) {
             if (data!!.hasExtra("keywordsList")) {
-                keywordsList = data.getStringArrayListExtra("keywordsList")!!
+                keywordsList =
+                    data.getParcelableArrayListExtra<Keyword>("keywordsList") as ArrayList<Keyword>
                 setupTabLayout()
 
-                val users = db.collection("users")
+                updateFirebase()
+            }
+        } else if (requestCode == 7376 && resultCode == Activity.RESULT_OK) {
+            if (data!!.hasExtra("keywordsList")) {
+                keywordsList =
+                    data.getParcelableArrayListExtra<Keyword>("keywordsList") as ArrayList<Keyword>
 
-                users.document(Firebase.auth.uid.toString()).set(mapOf("keywords" to keywordsList))
+                updateFirebase()
             }
         }
+    }
+
+    fun updateFirebase() {
+        val users = db.collection("users")
+
+        users.document(Firebase.auth.uid.toString()).set(mapOf("keywords" to keywordsList))
+    }
+
+    fun startKeywordSelection(requestCode: Int) {
+        val intent = Intent(this, KeywordSelectionActivity::class.java)
+        intent.putParcelableArrayListExtra("keywordsList", keywordsList)
+        startActivityForResult(intent, requestCode)
     }
 }
 

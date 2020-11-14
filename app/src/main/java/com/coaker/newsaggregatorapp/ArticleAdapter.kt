@@ -67,7 +67,7 @@ class ArticleAdapter(
         holder.preview.text = articlePreview.description
 
         val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.UK)
-        sdf.timeZone = TimeZone.getTimeZone("GMT")
+        sdf.timeZone = TimeZone.getTimeZone("UK")
         try {
             val time: Long = sdf.parse(articlePreview.publishedAt).time
             val now = System.currentTimeMillis()
