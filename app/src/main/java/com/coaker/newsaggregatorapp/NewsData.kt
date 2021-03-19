@@ -3,6 +3,12 @@ package com.coaker.newsaggregatorapp
 import android.os.Parcel
 import android.os.Parcelable
 
+/**
+ * A parcelable class that stores data about news articles.
+ *
+ * @author Sean Coaker (986529)
+ * @since 1.0
+ */
 class NewsData() : Parcelable {
     var source: String? = null
     var author: String? = null

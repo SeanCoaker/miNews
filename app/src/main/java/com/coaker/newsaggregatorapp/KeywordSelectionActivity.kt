@@ -11,6 +11,12 @@ import com.coaker.newsaggregatorapp.ui.keywords.Keyword
 import com.google.android.material.textfield.TextInputEditText
 import java.lang.NullPointerException
 
+/**
+ * An activity class allowing users to add keywords to view news stories about.
+ *
+ * @author Sean Coaker (986529)
+ * @since 1.0
+ */
 class KeywordSelectionActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var buttonSport: ImageButton
@@ -26,6 +32,13 @@ class KeywordSelectionActivity : AppCompatActivity(), View.OnClickListener {
     private var keywordsList = ArrayList<Keyword>()
     private var keywordButtons = ArrayList<ImageButton>()
 
+
+    /**
+     * A method called when the activity is being created. This sets up all the button variables
+     * needed to configure them in the class.
+     *
+     * @param[savedInstanceState] Any previous saved instance of the activity.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.keyword_selection_layout)
@@ -74,6 +87,12 @@ class KeywordSelectionActivity : AppCompatActivity(), View.OnClickListener {
         buttonSubmit.setOnClickListener(this)
     }
 
+
+    /**
+     * An onClick method used when any button in the activity layout is clicked.
+     *
+     * @param[v] The button that was clicked.
+     */
     override fun onClick(v: View) {
         when (v.id) {
             R.id.imageButtonSport -> {
@@ -119,6 +138,13 @@ class KeywordSelectionActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+
+    /**
+     * A method that changes the appearance of a button to let the user know they have selected or
+     * unselected that button.
+     *
+     * @param[button] The button that was selected or unselected.
+     */
     private fun selectButton(button: ImageButton) {
         if (button.isSelected) {
             when (button) {
@@ -169,6 +195,11 @@ class KeywordSelectionActivity : AppCompatActivity(), View.OnClickListener {
         button.isSelected = !button.isSelected
     }
 
+
+    /**
+     * A method that populates the keyword list with custom keywords entered by the user, and preset
+     * keywords which are selected by the user when they select a keyword button.
+     */
     private fun populateKeywordsList() {
         val customText = findViewById<TextInputEditText>(R.id.editTextKeywords).text
         val customKeywords  = customText!!.split(",")
@@ -236,6 +267,11 @@ class KeywordSelectionActivity : AppCompatActivity(), View.OnClickListener {
         addKeywordToList(newKeywordStrings, keywordStrings)
     }
 
+
+    /**
+     * A method used when further keywords are being added to display to the user which keywords they
+     * have selected already.
+     */
     private fun setupPreviousSelections() {
         if (keywordsList.isNotEmpty()) {
             keywordsList.forEach {
@@ -289,11 +325,25 @@ class KeywordSelectionActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+
+    /**
+     * This method changes the appearance of the button being selected to let the user know this
+     * button has been successfully selected.
+     *
+     * @param[button] The button being selected.
+     */
     private fun setButtonSelected(button: ImageButton) {
         button.setImageResource(R.drawable.ic_baseline_check_24)
         button.setBackgroundResource(R.drawable.circle_button_purple)
     }
 
+
+    /**
+     * This method adds a new keyword to the user's keywords list.
+     *
+     * @param[newKeywordStrings] The new keyword to be added.
+     * @param[keywordStrings] The list of keywords.
+     */
     private fun addKeywordToList(newKeywordStrings: ArrayList<String>, keywordStrings: ArrayList<String>) {
         newKeywordStrings.forEach {
             if (!keywordStrings.contains(it)) {
@@ -306,6 +356,11 @@ class KeywordSelectionActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+
+    /**
+     * This method is called when the activity is being closed and sends the keywords list back to
+     * the main activity.
+     */
     override fun finish() {
         val data = Intent()
         data.putParcelableArrayListExtra("keywordsList", keywordsList)

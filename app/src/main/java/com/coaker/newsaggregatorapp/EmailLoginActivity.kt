@@ -21,7 +21,9 @@ import com.google.firebase.ktx.Firebase
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-
+/**
+ * An activity class used to control the login using email and password screen.
+ */
 class EmailLoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
     private lateinit var loginButton: Button
@@ -32,6 +34,13 @@ class EmailLoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var passwordTextInputLayout: TextInputLayout
     private lateinit var confirmPasswordTextInputLayout: TextInputLayout
 
+
+    /**
+     * A method called when the activity is being created. This method sets the initial login screen
+     * display to the user.
+     *
+     * @param[savedInstanceState] Any previous saved instance of the activity.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.email_password_login)
@@ -52,13 +61,18 @@ class EmailLoginActivity : AppCompatActivity(), View.OnClickListener {
         registerTextView.setOnClickListener(this)
         registerButton.setOnClickListener(this)
 
-
-
         registerButton.visibility = View.GONE
         nameTextInputLayout.visibility = View.GONE
         confirmPasswordTextInputLayout.visibility = View.GONE
     }
 
+
+    /**
+     * A method that incorporates the button onclick method. This method sets what responses should
+     * happen when certain buttons are clicked in this activity.
+     *
+     * @param[v] The button that was clicked.
+     */
     override fun onClick(v: View?) {
 
         val editTextName = findViewById<TextInputEditText>(R.id.editTextName)
@@ -129,16 +143,32 @@ class EmailLoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+
+    /**
+     * This method attempts to sign in to firebase using the specified email and password.
+     *
+     * @param[email] The email to be logged in with
+     * @param[password] The password to be logged in with
+     */
     private fun emailSignIn(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 updateUI(auth.currentUser)
             } else {
                 updateUI(null)
+                emailTextInputLayout.error = "Login credentials are incorrect"
             }
         }
     }
 
+
+    /**
+     * This method attempts to create an account in firebase using the specified name, email and password.
+     *
+     * @param[email] The email to be associated with the account.
+     * @param[password] The password to be associated with the account.
+     * @param[name] The name to be associated with the account.
+     */
     private fun emailCreateAccount(email: String, password: String, name: String) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
@@ -166,6 +196,12 @@ class EmailLoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+
+    /**
+     * A method which starts the main activity.
+     *
+     * @param[user] The user that has logged in.
+     */
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
             val intent = Intent(this, MainActivity::class.java)
@@ -174,6 +210,15 @@ class EmailLoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+
+    /**
+     * A method that validates that the password is in the specified format of at least 8 characters,
+     * including at least 1 uppercase letter and 1 number.
+     *
+     * @param[password] The password to be validated.
+     *
+     * @return[Boolean] True if the password was validated or false otherwise.
+     */
     private fun passwordValidation(password: String): Boolean {
         var valid = true
         var regex: String?
@@ -201,6 +246,14 @@ class EmailLoginActivity : AppCompatActivity(), View.OnClickListener {
         return valid
     }
 
+
+    /**
+     * A method that validates that the email entered is in the correct format.
+     *
+     * @param[email] The email entered.
+     *
+     * @return[Boolean] True if the email was validated or false otherwise.
+     */
     private fun emailValidation(email: String): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }

@@ -8,5 +8,5 @@
     <dimen name="fab_margin">10dp</dimen>
     <dimen name="card_corner_radius">10dp</dimen>
     <dimen name="card_margin_hor">15dp</dimen>
-    <dimen name="card_margin_vert">20dp</dimen>
+    <dimen name="card_margin_vert">10dp</dimen>
 </resources>

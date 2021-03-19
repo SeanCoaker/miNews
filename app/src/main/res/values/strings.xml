@@ -1,9 +1,7 @@
 <resources>
-    <string name="app_name">News Aggregator App</string>
+    <string name="app_name">miNews</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_example_user">Sean Coaker</string>
-    <string name="nav_example_email">example@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -14,42 +12,12 @@
     <string name="menu_logout">Log Out</string>
     <string name="article">Article</string>
 
-    <string name="BBC">BBC</string>
-
-    <string name="sport_text">Sport</string>
-    <string name="politics_text">Politics</string>
-    <string name="covid_text">Covid</string>
-    <string name="europe_text">Europe</string>
-    <string name="tottenham_text">Tottenham</string>
-    <string name="tennis_text">Tennis</string>
-    <string name="gaming_text">Gaming</string>
-
-    <string name="bale_full_article_example">Tottenham have re-signed Wales forward Gareth Bale from Spanish champions Real Madrid on a season-long loan.
-        \n\nBale, 31, left Spurs for a then world record £85m in 2013 and went on to score more than 100 goals and win four Champions Leagues with Real.
-        \n\n"It\'s nice to be back. It\'s such a special club to me. It\'s where I made my name," said Bale.
-        \n\n"Hopefully, now I can get some match fitness, get under way and really help the team and, hopefully, win trophies."
-        \n\nSpurs said Bale has signed for them with a knee injury sustained playing for Wales earlier this month and they "anticipate that he will be match fit after October\'s international break".
-        \n\nThat would mean the forward missing their next five games, with the club\'s first outing following the international break at home to West Ham on 17 October. </string>
-
-    <string name="bale_headline">BBC: Gareth Bale: Tottenham re-sign Real Madrid forward on loan</string>
-    <string name="bale_preview">Tottenham have re-signed Wales forward Gareth Bale from Spanish champions Real Madrid on a season-long loan....</string>
-    <string name="bale_image_description">Bale at Hotspur Way</string>
-
-    <string name="lewa_headline">The Guardian: European roundup: Lewandowski hits hat-trick as Bayern thrash Eintracht</string>
-    <string name="lewa_preview">Robert Lewandowski bagged a hat–trick as Bayern Munich thumped Eintracht Frankfurt 5–0. In a typically ruthless Bayern…</string>
-    <string name="lewa_image_description">Lewandowski celebrates hat-trick</string>
-
-    <string name="hamilton_headline">ESPN: Hamilton moves past Schumacher with 92nd win</string>
-    <string name="hamilton_preview">Lewis Hamilton claimed a record 92nd Formula One victory at the Portuguese Grand Prix, moving him clear of Michael…</string>
-    <string name="hamilton_image_description">Hamilton celebrates win at Portimao</string>
-
     <string name="toolbar_save">Save Article</string>
     <string name="toolbar_audio">Article Text to Speech</string>
     <string name="toolbar_share">Share Article</string>
     <string name="article_image">article_image</string>
     <string name="sign_in_with_email">Sign in with Email</string>
     <string name="sign_in_with_facebook">Sign in with Facebook</string>
-    <string name="sign_in_with_apple">Sign in with Apple</string>
     <string name="sign_in_with_google">Sign in with Google</string>
 
     <string name="facebook_app_id">417797376281039</string>
@@ -65,6 +33,18 @@
     <string name="add_topics_fab">Add topics fab</string>
     <string name="keywords_text_hint">Custom keywords separated by a comma</string>
     <string name="submit_button">Submit</string>
-    <string name="add_keywords">Add keywords...</string>
-
+    <string name="add_keywords">+ Add keywords…</string>
+    <string name="solve_word">Solve Word</string>
+    <string name="back">Back</string>
+    <string name="you_re_not_connected_to_a_network">You\'re not connected to a network.</string>
+    <string name="refresh">Refresh</string>
+    <string name="sport">Sport</string>
+    <string name="technology">Technology</string>
+    <string name="politics">Politics</string>
+    <string name="business">Business</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="medicine">Medicine</string>
+    <string name="food">Food</string>
+    <string name="gaming">Gaming</string>
+    <string name="music">Music</string>
 </resources>

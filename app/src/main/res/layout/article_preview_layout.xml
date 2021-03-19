@@ -5,23 +5,23 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_marginHorizontal="@dimen/card_margin_hor"
-    android:layout_marginTop="@dimen/card_margin_vert"
+    android:layout_marginBottom="@dimen/card_margin_vert"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardElevation="20dp">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/articleImage2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/articleHeadline2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:textColor="?android:attr/textColorPrimary"
             android:textStyle="bold" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/articlePreview2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
             android:paddingVertical="5dp"
             android:textColor="?android:attr/textColorPrimary" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/articlePublisherDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,6 +48,6 @@
             android:paddingBottom="15dp"
             android:textColor="?android:attr/textColorPrimary" />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.cardview.widget.CardView>

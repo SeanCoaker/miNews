@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     android:columnCount="3" >
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imageButtonSport"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -21,24 +21,24 @@
             app:srcCompat="@drawable/ic_baseline_sports_basketball_24"
             android:background="@drawable/circle_button"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewSport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnPrimary"
             android:textAlignment="center"
             android:textSize="18sp"
-            android:text="Sport" />
-    </LinearLayout>
+            android:text="@string/sport" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center_horizontal">
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imageButtonTechnology"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -49,22 +49,22 @@
             app:srcCompat="@drawable/ic_baseline_laptop_24"
             android:background="@drawable/circle_button"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewTechnology"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnPrimary"
             android:textAlignment="center"
             android:textSize="18sp"
-            android:text="Technology" />
-    </LinearLayout>
+            android:text="@string/technology" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imageButtonPolitics"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -75,22 +75,22 @@
             app:srcCompat="@drawable/ic_baseline_mic_24"
             android:background="@drawable/circle_button"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewPolitics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnPrimary"
             android:textAlignment="center"
             android:textSize="18sp"
-            android:text="Politics" />
-    </LinearLayout>
+            android:text="@string/politics" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imageButtonBusiness"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -101,23 +101,23 @@
             app:srcCompat="@drawable/ic_baseline_attach_money_24"
             android:background="@drawable/circle_button"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewBusiness"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnPrimary"
             android:textAlignment="center"
             android:textSize="18sp"
-            android:text="Business" />
-    </LinearLayout>
+            android:text="@string/business" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:orientation="vertical" >
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imageButtonEntertainment"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -128,22 +128,22 @@
             app:srcCompat="@drawable/ic_baseline_format_paint_24"
             android:background="@drawable/circle_button"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewEntertainment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnPrimary"
             android:textAlignment="center"
             android:textSize="18sp"
-            android:text="Entertainment" />
-    </LinearLayout>
+            android:text="@string/entertainment" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imageButtonMedicine"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -154,22 +154,22 @@
             app:srcCompat="@drawable/ic_baseline_medical_services_24"
             android:background="@drawable/circle_button"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewMedicine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnPrimary"
             android:textAlignment="center"
             android:textSize="18sp"
-            android:text="Medicine" />
-    </LinearLayout>
+            android:text="@string/medicine" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imageButtonFood"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -180,23 +180,23 @@
             app:srcCompat="@drawable/ic_baseline_fastfood_24"
             android:background="@drawable/circle_button"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewFood"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnPrimary"
             android:textAlignment="center"
             android:textSize="18sp"
-            android:text="Food" />
-    </LinearLayout>
+            android:text="@string/food" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:orientation="vertical" >
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imageButtonGaming"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -207,22 +207,22 @@
             app:srcCompat="@drawable/ic_baseline_games_24"
             android:background="@drawable/circle_button"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewGaming"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnPrimary"
             android:textAlignment="center"
             android:textSize="18sp"
-            android:text="Gaming" />
-    </LinearLayout>
+            android:text="@string/gaming" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imageButtonMusic"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -233,14 +233,14 @@
             app:srcCompat="@drawable/ic_baseline_music_note_24"
             android:background="@drawable/circle_button"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewMusic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnPrimary"
             android:textAlignment="center"
             android:textSize="18sp"
-            android:text="Music" />
-    </LinearLayout>
+            android:text="@string/music" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </GridLayout>

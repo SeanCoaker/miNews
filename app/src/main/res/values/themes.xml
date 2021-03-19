@@ -15,6 +15,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/white_700</item>
         <item name="android:windowLightStatusBar">true</item>
 
+        <item name="android:colorControlActivated">@color/purple_500</item>
+
+        <item name="colorControlNormal">@color/white_200</item>
+
+        <item name="itemIconTint">@color/black</item>
+
         <!-- Customize your theme here. -->
     </style>
 
@@ -31,6 +37,7 @@
         <item name="tabTextAppearance">@style/CustomText</item>
         <item name="tabIndicatorColor">?attr/colorPrimaryVariant</item>
         <item name="tabSelectedTextColor">?attr/colorPrimaryVariant</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="CustomText" parent="TextAppearance.AppCompat">
@@ -46,6 +53,7 @@
     <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="boxStrokeColor">@color/secondary_blue_500</item>
         <item name="boxStrokeWidth">2dp</item>
+        <item name="hintTextColor">@color/secondary_blue_500</item>
     </style>
 
 </resources>

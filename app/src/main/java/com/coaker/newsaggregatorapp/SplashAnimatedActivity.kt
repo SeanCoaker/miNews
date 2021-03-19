@@ -8,7 +8,22 @@ import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
+/**
+ * An activity class that displays the app's logo in a video on app startup.
+ *
+ * @author Sean Coaker (986529)
+ * @since 1.0
+ */
 class SplashAnimatedActivity: AppCompatActivity() {
+
+
+    /**
+     * This method is called when the activity is being created. The method checks if a user is logged
+     * in. If they are then the main activity is shown, if not then the login activity is shown. Whilst
+     * these 2 activities begin to load, the app's logo is displayed in a splash screen video.
+     *
+     * @param[savedInstanceState] Any previous saved instance of the activity.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_layout_animated)

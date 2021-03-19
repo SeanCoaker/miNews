@@ -2,20 +2,20 @@ package com.coaker.newsaggregatorapp
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -23,10 +23,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.coaker.newsaggregatorapp.ui.keywords.Keyword
-import com.coaker.newsaggregatorapp.ui.keywords.UserDocument
 import com.facebook.login.LoginManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -37,38 +34,44 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+/**
+ * An activity class that handles the main operations of the application.
+ *
+ * @author Sean Coaker (986529)
+ * @since 1.0
+ */
 class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var progressBar: ProgressBar
-    lateinit var tabLayout: TabLayout
-
-    private var articleList = ArrayList<NewsData>()
-    var keywordsList = ArrayList<Keyword>()
+    private lateinit var drawerLayout: DrawerLayout
 
     private var name: String? = null
     private var email: String? = null
     private var image: Uri? = null
     private var isCustom: Boolean? = null
-
-    private val client = OkHttpClient()
     private val db = FirebaseFirestore.getInstance()
 
+    lateinit var tabLayout: TabLayout
+    lateinit var navView: NavigationView
+
+
+    /**
+     * A method called when the activity is being created. This method sets up the navigation controller
+     * and the drawer layout.
+     *
+     * @param[savedInstanceState] Any previous saved instance of the activity.
+     */
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -76,35 +79,25 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
         isCustom = intent.getBooleanExtra("custom", false)
 
         progressBar = findViewById(R.id.progressBar)
+        progressBar.visibility = View.VISIBLE
+
         tabLayout = findViewById(R.id.tabLayout)
 
         val user = Firebase.auth.currentUser
         user!!.reload()
 
-        val docRef = db.collection("users").document(user.uid)
-        docRef.get().addOnSuccessListener { documentSnapshot ->
-            if (documentSnapshot.exists()) {
-                val result = documentSnapshot.toObject(UserDocument::class.java)
-                keywordsList = result!!.keywords!!
-            }
-            setupTabLayout()
-        }.addOnFailureListener {
-            Log.i("Firestore Read: ", "Failed")
-        }
-
         name = user.displayName.toString()
         email = user.email
         image = user.photoUrl
 
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.nav_view)
 
         navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        // Passing each menu ID as a set of Ids
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home,
@@ -119,20 +112,6 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
         val logoutItem = navView.menu.findItem(R.id.nav_logout)
         logoutItem.setOnMenuItemClickListener(this)
 
-        if (savedInstanceState != null) {
-            articleList = savedInstanceState.getParcelableArrayList("articleList")!!
-            tabLayout.getTabAt(savedInstanceState.getInt("tab"))!!.select()
-            restoreArticles()
-        } else {
-            if (tabLayout.getTabAt(0) != null) {
-                val sdf = SimpleDateFormat("yyyy-MM-dd")
-                val yesterday = Calendar.getInstance()
-                yesterday.add(Calendar.DATE, -1)
-                sdf.format(yesterday)
-                resetArticles(tabLayout.getTabAt(0)!!.text.toString(), sdf.format(yesterday.time))
-            }
-        }
-
         val drawerImage = navView.getHeaderView(0).findViewById<ImageView>(R.id.drawerImage)
 
         if (FirebaseAuth.getInstance().currentUser!!.providerData[1].providerId == EmailAuthProvider.PROVIDER_ID) {
@@ -140,199 +119,162 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
         } else {
             Picasso.get().load(image).resize(128, 128).into(drawerImage)
         }
+
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        findViewById<TextView>(R.id.nameText).text = name
-        findViewById<TextView>(R.id.emailText).text = email
 
-        return true
+    /**
+     * This method will stop our notification timer so that the user doesn't get notifications when
+     * using this activity.
+     */
+    override fun onStart() {
+        super.onStart()
+
+        val receiver = ComponentName(this, AlarmReceiver::class.java)
+        val packageManager = packageManager
+
+        packageManager.setComponentEnabledSetting(
+            receiver,
+            PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+            PackageManager.DONT_KILL_APP
+        )
     }
 
+
+    /**
+     * Allows the user to navigate back to this activity if they have moved to another activity.
+     */
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    private fun getArticles(keyword: String, date: String) {
-        //val urlPersonal = "https://newsapi.org/v2/everything?q=$keyword&language=en&from=$date&sortBy=relevancy&apiKey=d4fd6b189c7d4ac4afa1f5ac86f9df5d"
-        val urlUni =
-            "https://newsapi.org/v2/everything?q=$keyword&language=en&from=$date&sortBy=relevancy&apiKey=b5c1da042e234be5b00bd666e41b160d"
-        val request = Request.Builder().url(urlUni).build()
 
-        val response = client.newCall(request).execute().body()!!.string()
-
-        val jsonObject = JSONObject(response)
-        val jsonArray = jsonObject.getJSONArray("articles")
-
-        for (i in 0 until jsonArray.length()) {
-            val jsonArticle = jsonArray.getJSONObject(i)
-
-            val newsData = NewsData()
-
-            val sourceObject = jsonArticle.getJSONObject("source")
-            newsData.source = sourceObject.getString("name")
-
-            newsData.author = jsonArticle.getString("author")
-            newsData.title = jsonArticle.getString("title")
-            newsData.description = jsonArticle.getString("description")
-            newsData.url = jsonArticle.getString("url")
-            newsData.urlToImage = jsonArticle.getString("urlToImage")
-            newsData.publishedAt = jsonArticle.getString("publishedAt")
-            newsData.content = jsonArticle.getString("content")
-
-            articleList.add(newsData)
-        }
-    }
-
-    fun resetArticles(keyword: String, date: String) {
-        lifecycleScope.launch {
-            val operation = async(Dispatchers.IO) {
-                println(date)
-                getArticles(keyword, date)
-            }
-            operation.await()
-
-            val recyclerView = findViewById<RecyclerView>(R.id.RecyclerView)
-
-            recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
-
-            val adapter = ArticleAdapter(this@MainActivity, articleList)
-            recyclerView.adapter = adapter
-
-            progressBar.visibility = View.GONE
-            recyclerView.visibility = View.VISIBLE
-        }
-    }
-
+    /**
+     * Creates an intent that allows the user to view their selected article in the web view activity.
+     *
+     * @param[articleToShow] The position of the article to show in the list of articles.
+     */
     fun showArticle(articleToShow: Int) {
-        val newIntent = Intent(this, ArticleWebViewActivity::class.java)
 
-//        lifecycleScope.launch {
-//            val operation = async(Dispatchers.IO) {
-//                val doc = Jsoup.connect(url).get()
-//                content = doc.text()
-//            }
-//            operation.await()
-//
-//            newIntent.putExtra("url", url)
-//            newIntent.putExtra("content", content)
-//            startActivity(newIntent)
-//        }
+        if (Variables.isConnected) {
+            val newIntent = Intent(this, ArticleWebViewActivity::class.java)
 
-        newIntent.putExtra("url", articleList[articleToShow].url.toString())
-        newIntent.putExtra("content", articleList[articleToShow].content)
-        startActivity(newIntent)
+            newIntent.putExtra("url",Variables.articleList[articleToShow].url.toString())
+            newIntent.putExtra("headline", Variables.articleList[articleToShow].title)
+            newIntent.putExtra("source", Variables.articleList[articleToShow].source)
+            newIntent.putExtra("date", Variables.articleList[articleToShow].publishedAt)
+            newIntent.putExtra("content", Variables.articleList[articleToShow].content)
+
+            startActivity(newIntent)
+        } else {
+            Toast.makeText(this, "You're not connected to a network.",
+                Toast.LENGTH_SHORT).show()
+        }
+
     }
 
-    private fun restoreArticles() {
-        val recyclerView = findViewById<RecyclerView>(R.id.RecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
 
-        val adapter = ArticleAdapter(this@MainActivity, articleList)
-        recyclerView.adapter = adapter
-
-        progressBar.visibility = View.GONE
-        recyclerView.visibility = View.VISIBLE
-    }
-
-    override fun onSaveInstanceState(savedState: Bundle) {
-        savedState.putParcelableArrayList("articleList", articleList)
-        savedState.putInt("tab", findViewById<TabLayout>(R.id.tabLayout).selectedTabPosition)
-        super.onSaveInstanceState(savedState)
-    }
-
+    /**
+     * Sets up the logout menu item to allow the user to logout correctly.
+     *
+     * @param[item] The menu item clicked.
+     *
+     * @return[Boolean] True if the user logged out and false otherwise.
+     */
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.nav_logout -> {
 
-                FirebaseAuth.getInstance().signOut()
-                LoginManager.getInstance().logOut()
-                val logoutIntent = Intent(this, LoginActivity::class.java)
-                startActivity(logoutIntent)
+                logout()
+
                 return true
             }
         }
         return false
     }
 
-    fun setupTabLayout() {
 
-        tabLayout.removeAllTabs()
-
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            @SuppressLint("SimpleDateFormat")
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                articleList.clear()
-                val keyword = tab.text.toString()
-                val sdf = SimpleDateFormat("yyyy-MM-dd")
-                val yesterday = Calendar.getInstance()
-                yesterday.add(Calendar.DATE, -1)
-
-                resetArticles(keyword, sdf.format(yesterday.time).toString())
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {}
-            override fun onTabReselected(tab: TabLayout.Tab) {}
-        })
-
-        keywordsList.forEach {
-            tabLayout.addTab(tabLayout.newTab().setText(it.word))
-        }
-
-        val addTopicsTextView = findViewById<TextView>(R.id.addTopicsTextView)
-        val fab = findViewById<FloatingActionButton>(R.id.addTopicsFab)
-
-        if (tabLayout.getTabAt(0) == null) {
-            tabLayout.visibility = View.GONE
-            progressBar.visibility = View.GONE
-            addTopicsTextView.visibility = View.VISIBLE
-            fab.visibility = View.VISIBLE
-
-            fab.setOnClickListener {
-                startKeywordSelection(7375)
-            }
-        } else {
-            tabLayout.visibility = View.VISIBLE
-            addTopicsTextView.visibility = View.GONE
-            fab.visibility = View.GONE
-        }
-
-    }
-
+    /**
+     * This method is used to make sure that when the user adds keywords, firestore is updated.
+     *
+     * @param[requestCode] The request code sent with the startActivityForResult
+     * @param[resultCode] The code returned from the intent.
+     * @param[data] The data returned from the intent.
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 7375 && resultCode == Activity.RESULT_OK) {
+        if ((requestCode == 7375 || requestCode == 7376) && resultCode == Activity.RESULT_OK) {
             if (data!!.hasExtra("keywordsList")) {
-                keywordsList =
+                Variables.keywordsList =
                     data.getParcelableArrayListExtra<Keyword>("keywordsList") as ArrayList<Keyword>
-                setupTabLayout()
 
                 updateFirebase()
             }
-        } else if (requestCode == 7376 && resultCode == Activity.RESULT_OK) {
-            if (data!!.hasExtra("keywordsList")) {
-                keywordsList =
-                    data.getParcelableArrayListExtra<Keyword>("keywordsList") as ArrayList<Keyword>
 
-                updateFirebase()
+            if (requestCode == 7375 && Variables.keywordsList.isEmpty()) {
+                findViewById<FloatingActionButton>(R.id.addTopicsFab).visibility = View.VISIBLE
+                findViewById<TextView>(R.id.addTopicsTextView).visibility = View.VISIBLE
             }
         }
     }
 
+
+    /**
+     * This method updates the user's list of keywords stored in firestore.
+     */
     fun updateFirebase() {
+
         val users = db.collection("users")
 
-        users.document(Firebase.auth.uid.toString()).set(mapOf("keywords" to keywordsList))
+        users.document(Firebase.auth.uid.toString()).set(mapOf("keywords" to Variables.keywordsList))
     }
 
+
+    /**
+     * This starts the KeywordSelectionActivity which allows the user to add keywords to view news stories about.
+     *
+     * @param[requestCode] Denotes whether the call was made from the home fragment or keywords fragment.
+     */
     fun startKeywordSelection(requestCode: Int) {
         val intent = Intent(this, KeywordSelectionActivity::class.java)
-        intent.putParcelableArrayListExtra("keywordsList", keywordsList)
+        intent.putParcelableArrayListExtra("keywordsList", Variables.keywordsList)
         startActivityForResult(intent, requestCode)
+    }
+
+
+    /**
+     * This method logs the user out of their account and returns them to the login screen.
+     */
+    fun logout() {
+        FirebaseAuth.getInstance().signOut()
+        LoginManager.getInstance().logOut()
+        Variables.articleList.clear()
+        Variables.keywordsList.clear()
+        val logoutIntent = Intent(this, LoginActivity::class.java)
+        logoutIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(logoutIntent)
+        finish()
+    }
+
+
+    /**
+     * This method ensures that an alarm manager is setup when the activity is stopped. The alarm
+     * manager ensures that a notification is sent to the user every hour.
+     */
+    override fun onStop() {
+        super.onStop()
+
+        val notifyIntent = Intent(this, AlarmReceiver::class.java)
+        val pendingIntent =
+            PendingIntent.getBroadcast(this, 7, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            System.currentTimeMillis() + (1000 * 60 * 60),
+            1000 * 60 * 60, pendingIntent
+        )
     }
 }
 
